@@ -59,6 +59,21 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    //Koin
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.navigation)
+    implementation(libs.koin.androidx.compose)
+    //Retrofit
+    implementation(libs.retrofit)
+    //Moshi
+    implementation(libs.moshi.kotlin)
+    implementation(libs.converter.moshi)
+    //OkHttp
+    implementation(libs.okhttp)
+    //Kotlinx Serialization Json
+    implementation(libs.kotlinx.serialization.json)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
