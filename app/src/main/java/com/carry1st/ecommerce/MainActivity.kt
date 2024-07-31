@@ -20,27 +20,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        lifecycleScope.launch {
-            productRepository.getProductList().collect { result ->
-                when (result) {
-                    is NetworkResult.ClientError -> {
-                        Log.e("ClientError:", result.error)
-                    }
 
-                    is NetworkResult.NetworkError -> {
-                        Log.e("NetworkError:", result.error)
-                    }
-
-                    is NetworkResult.ServerError -> {
-                        Log.e("ClientError:", result.error)
-                    }
-
-                    is NetworkResult.Success -> {
-                        Log.e("Success:", result.data.toString())
-                    }
-                }
-            }
-        }
         setContent {
             Carry1stTheme {
                 App()

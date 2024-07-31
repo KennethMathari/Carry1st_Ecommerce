@@ -1,4 +1,4 @@
-package com.carry1st.ecommerce.ui.destination
+package com.carry1st.ecommerce.ui.navigation.destination
 
 import kotlinx.serialization.Serializable
 

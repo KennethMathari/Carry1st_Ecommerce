@@ -6,8 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.carry1st.ecommerce.ui.destination.ProductList
-import com.carry1st.ecommerce.ui.screens.ProductListScreen
+import com.carry1st.ecommerce.ui.navigation.destination.ProductList
+import com.carry1st.ecommerce.ui.screen.ProductListScreen
 
 @Composable
 fun Navigation(
