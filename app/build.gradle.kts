@@ -74,6 +74,8 @@ dependencies {
     implementation(libs.okhttp)
     //Kotlinx Serialization Json
     implementation(libs.kotlinx.serialization.json)
+    //Compose Navigation
+    implementation(libs.androidx.navigation.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
