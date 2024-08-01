@@ -7,6 +7,7 @@ import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_CLIENT_ERRORMES
 import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_NETWORK_ERRORMESSAGE
 import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_SERVER_ERRORMESSAGE
 import com.carry1st.ecommerce.domain.utils.NetworkResult
+import com.carry1st.ecommerce.ui.mapper.toProductPresentation
 import com.carry1st.ecommerce.ui.state.ProductListState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -46,7 +47,9 @@ class ProductListViewModel(
 
                     is NetworkResult.Success -> {
                         _productListState.value = ProductListState(
-                            productList = result.data, isLoading = false, errorMessage = null
+                            productList = result.data.map { productDomain ->
+                                productDomain.toProductPresentation()
+                            }, isLoading = false, errorMessage = null
                         )
                     }
                 }

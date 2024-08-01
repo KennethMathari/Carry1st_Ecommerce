@@ -1,9 +1,9 @@
 package com.carry1st.ecommerce.ui.state
 
-import com.carry1st.ecommerce.domain.model.ProductDomain
+import com.carry1st.ecommerce.ui.model.ProductPresentation
 
 data class ProductListState(
-    val productList: List<ProductDomain>? = emptyList(),
+    val productList: List<ProductPresentation>? = emptyList(),
     val isLoading: Boolean = false,
     val errorMessage: String? = null
 )
