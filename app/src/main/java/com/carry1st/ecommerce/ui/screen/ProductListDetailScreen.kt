@@ -1,16 +1,7 @@
 package com.carry1st.ecommerce.ui.screen
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.AnimatedPane
 import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffold
@@ -21,8 +12,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.carry1st.ecommerce.ui.component.LoadingScreen
+import com.carry1st.ecommerce.ui.component.ProductDetail
+import com.carry1st.ecommerce.ui.component.ProductList
 import com.carry1st.ecommerce.ui.model.ProductPresentation
-import com.carry1st.ecommerce.ui.state.ProductListState
 import com.carry1st.ecommerce.ui.viewmodel.ProductListViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -50,15 +42,20 @@ fun ProductListDetailScreen(
                     AnimatedPane {
                         ProductList(modifier = modifier,
                             productListState = productListState,
-                            onProductClicked = {
-                                navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, it)
+                            onProductClicked = { productPresentation ->
+                                navigator.navigateTo(
+                                    ListDetailPaneScaffoldRole.Detail,
+                                    productPresentation
+                                )
                             })
                     }
                 },
                 detailPane = {
                     AnimatedPane {
-                        navigator.currentDestination?.content?.let {
-                            ProductDetail(productPresentation = it)
+                        navigator.currentDestination?.content?.let { productPresentation ->
+                            ProductDetail(
+                                modifier = modifier, productPresentation = productPresentation
+                            )
                         }
                     }
                 })
@@ -66,40 +63,5 @@ fun ProductListDetailScreen(
     }
 }
 
-@Composable
-fun ProductList(
-    modifier: Modifier,
-    productListState: ProductListState,
-    onProductClicked: (ProductPresentation) -> Unit
-) {
-    Column {
-        LazyColumn {
-            items(productListState.productList ?: emptyList()) { product ->
-                Card(colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                ), modifier = modifier
-                    .clickable(onClick = {
-                        onProductClicked(product)
-                    })
-                    .fillMaxWidth()
-                ) {
-                    Text(text = product.name)
-                }
-            }
 
-        }
-    }
-}
 
-@Composable
-fun ProductDetail(
-    productPresentation: ProductPresentation
-) {
-    Column {
-        Text(text = productPresentation.name)
-        Text(text = productPresentation.description)
-        Text(text = productPresentation.status)
-        Text(text = productPresentation.currencyCode)
-    }
-
-}
