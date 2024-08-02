@@ -13,13 +13,25 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.carry1st.ecommerce.ui.model.ProductPresentation
@@ -31,7 +43,34 @@ fun ProductList(
     productListState: ProductListState,
     onProductClicked: (ProductPresentation) -> Unit
 ) {
+    var productName by remember { mutableStateOf("") }
     Column {
+
+        OutlinedTextField(
+            value = productName,
+            onValueChange = {productName = it},
+            label = {
+                Text(text = "Search")
+            },
+            placeholder = {
+                Text(text = "Search for product..")
+            },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text, imeAction = ImeAction.Search
+            ),
+            trailingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.Search,
+                    contentDescription = "Search",
+                    modifier = modifier.clickable(
+                        onClick = {}
+                    )
+                )
+            },
+            modifier = modifier.padding(8.dp).fillMaxWidth()
+        )
+
         LazyColumn {
             items(productListState.productList ?: emptyList()) { product ->
                 Card(
