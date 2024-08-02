@@ -16,7 +16,9 @@ val appModule = module {
 
     single<ProductRepository> {
         ProductRepositoryImpl(
-            productService = get(), ioDispatcher = get()
+            productService = get(),
+            ioDispatcher = get(),
+            productDao = get()
         )
     }
 

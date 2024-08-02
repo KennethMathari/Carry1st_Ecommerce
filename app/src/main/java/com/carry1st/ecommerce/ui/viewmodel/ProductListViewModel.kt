@@ -11,7 +11,9 @@ import com.carry1st.ecommerce.ui.mapper.toProductPresentation
 import com.carry1st.ecommerce.ui.state.ProductListState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class ProductListViewModel(
     private val productRepository: ProductRepository
@@ -21,36 +23,34 @@ class ProductListViewModel(
     val productListState: StateFlow<ProductListState> get() = _productListState
 
     init {
-        getProductList()
+        getProductListFromServer()
+        getProductListFromLocalDB()
     }
 
-    private fun getProductList() {
+    private fun getProductListFromServer() {
         viewModelScope.launch {
+            runBlocking {
+                _productListState.value = ProductListState(
+                    productList = null, isLoading = true, errorMessage = null
+                )
 
-            _productListState.value = ProductListState(
-                productList = null, isLoading = true, errorMessage = null
-            )
+                productRepository.getProductListFromServer().collect { result ->
+                    when (result) {
+                        is NetworkResult.ClientError -> {
+                            updateErrorMessage(PRODUCTLIST_CLIENT_ERRORMESSAGE)
+                        }
 
-            productRepository.getProductList().collect { result ->
-                when (result) {
-                    is NetworkResult.ClientError -> {
-                        updateErrorMessage(PRODUCTLIST_CLIENT_ERRORMESSAGE)
-                    }
+                        is NetworkResult.NetworkError -> {
+                            updateErrorMessage(PRODUCTLIST_NETWORK_ERRORMESSAGE)
+                        }
 
-                    is NetworkResult.NetworkError -> {
-                        updateErrorMessage(PRODUCTLIST_NETWORK_ERRORMESSAGE)
-                    }
+                        is NetworkResult.ServerError -> {
+                            updateErrorMessage(PRODUCTLIST_SERVER_ERRORMESSAGE)
+                        }
 
-                    is NetworkResult.ServerError -> {
-                        updateErrorMessage(PRODUCTLIST_SERVER_ERRORMESSAGE)
-                    }
-
-                    is NetworkResult.Success -> {
-                        _productListState.value = ProductListState(
-                            productList = result.data.map { productDomain ->
-                                productDomain.toProductPresentation()
-                            }, isLoading = false, errorMessage = null
-                        )
+                        is NetworkResult.Success -> {
+                            productRepository.saveProductsToLocalDB(result.data)
+                        }
                     }
                 }
             }
@@ -58,8 +58,25 @@ class ProductListViewModel(
     }
 
     private fun updateErrorMessage(errorMessage: String) {
-        _productListState.value = ProductListState(
-            productList = null, isLoading = false, errorMessage = errorMessage
-        )
+        _productListState.update {
+            it.copy(
+                productList = null, isLoading = false, errorMessage = errorMessage
+            )
+        }
+    }
+
+    private fun getProductListFromLocalDB() {
+        viewModelScope.launch {
+            productRepository.getProductListFromLocalDB().collect { productList ->
+                _productListState.update {
+                    it.copy(
+                        productList = productList.map { productDomain -> productDomain.toProductPresentation() },
+                        isLoading = false,
+                        errorMessage = null
+                    )
+                }
+
+            }
+        }
     }
 }

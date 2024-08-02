@@ -7,5 +7,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {
 
-    suspend fun getProductList(): Flow<NetworkResult<List<ProductDomain>>>
+    suspend fun getProductListFromServer(): Flow<NetworkResult<List<ProductDomain>>>
+
+    suspend fun saveProductsToLocalDB(products: List<ProductDomain>)
+
+    suspend fun getProductListFromLocalDB(): Flow<List<ProductDomain>>
 }

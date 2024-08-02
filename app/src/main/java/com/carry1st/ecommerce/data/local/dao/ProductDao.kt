@@ -4,12 +4,13 @@ import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
 import com.carry1st.ecommerce.data.local.entity.ProductEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao{
     @Query("SELECT * FROM products")
-    fun getProducts(): List<ProductEntity>
+    fun getProducts(): Flow<List<ProductEntity>>
 
     @Upsert
-    fun saveProducts(vararg products: List<ProductEntity>)
+    suspend fun saveProducts(products: List<ProductEntity>)
 }
