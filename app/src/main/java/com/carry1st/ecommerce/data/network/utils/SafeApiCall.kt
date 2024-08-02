@@ -12,7 +12,7 @@ suspend fun <T : Any> safeApiCall(apiCall: suspend () -> T): NetworkResult<T> {
     } catch (e: IOException) {
         Log.e("IOException:", e.toString())
         e.printStackTrace()
-        NetworkResult.ClientError(e.toString()) // Handle IO exceptions
+        NetworkResult.NetworkError(e.toString()) // Handle IO exceptions
     } catch (e: HttpException) {
         Log.e("Http Error:", e.toString())
         e.printStackTrace()

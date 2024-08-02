@@ -1,6 +1,8 @@
 package com.carry1st.ecommerce.ui.navigation
 
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,15 +15,21 @@ import com.carry1st.ecommerce.ui.screen.SettingsScreen
 
 @Composable
 fun Navigation(
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    snackbarHostState: SnackbarHostState
 ) {
+
+    val scope = rememberCoroutineScope()
 
     NavHost(
         navController = navHostController, startDestination = ProductListDetail
     ) {
 
         composable<ProductListDetail> {
-            ProductListDetailScreen()
+            ProductListDetailScreen(
+                snackbarHostState = snackbarHostState,
+                scope = scope
+                )
         }
 
         composable<Cart> {
