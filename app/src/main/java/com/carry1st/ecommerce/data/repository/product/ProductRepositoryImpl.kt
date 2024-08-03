@@ -1,4 +1,4 @@
-package com.carry1st.ecommerce.data.repository
+package com.carry1st.ecommerce.data.repository.product
 
 import android.util.Log
 import com.carry1st.ecommerce.data.local.dao.ProductDao
@@ -40,7 +40,6 @@ class ProductRepositoryImpl(
                 }
                 productDao.saveProducts(productListEntity)
             } catch (e: Exception) {
-                Log.e("SAVEProductsLocalDB",e.toString())
                 e.printStackTrace()
             }
         }

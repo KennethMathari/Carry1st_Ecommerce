@@ -22,7 +22,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,29 +45,19 @@ fun ProductList(
     var productName by remember { mutableStateOf("") }
     Column {
 
-        OutlinedTextField(
-            value = productName,
-            onValueChange = {productName = it},
-            label = {
-                Text(text = "Search")
-            },
-            placeholder = {
-                Text(text = "Search for product..")
-            },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text, imeAction = ImeAction.Search
-            ),
-            trailingIcon = {
-                Icon(
-                    imageVector = Icons.Filled.Search,
-                    contentDescription = "Search",
-                    modifier = modifier.clickable(
-                        onClick = {}
-                    )
-                )
-            },
-            modifier = modifier.padding(8.dp).fillMaxWidth()
+        OutlinedTextField(value = productName, onValueChange = { productName = it }, label = {
+            Text(text = "Search")
+        }, placeholder = {
+            Text(text = "Search for product..")
+        }, singleLine = true, keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text, imeAction = ImeAction.Search
+        ), trailingIcon = {
+            Icon(imageVector = Icons.Filled.Search,
+                contentDescription = "Search",
+                modifier = modifier.clickable(onClick = {}))
+        }, modifier = modifier
+            .padding(8.dp)
+            .fillMaxWidth()
         )
 
         LazyColumn {

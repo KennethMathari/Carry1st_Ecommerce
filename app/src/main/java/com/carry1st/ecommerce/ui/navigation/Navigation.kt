@@ -15,8 +15,7 @@ import com.carry1st.ecommerce.ui.screen.SettingsScreen
 
 @Composable
 fun Navigation(
-    navHostController: NavHostController,
-    snackbarHostState: SnackbarHostState
+    navHostController: NavHostController, snackbarHostState: SnackbarHostState
 ) {
 
     val scope = rememberCoroutineScope()
@@ -26,10 +25,11 @@ fun Navigation(
     ) {
 
         composable<ProductListDetail> {
-            ProductListDetailScreen(
-                snackbarHostState = snackbarHostState,
-                scope = scope
-                )
+            ProductListDetailScreen(snackbarHostState = snackbarHostState,
+                scope = scope,
+                navigateToCartScreen = {
+                    navHostController.navigate(Cart)
+                })
         }
 
         composable<Cart> {

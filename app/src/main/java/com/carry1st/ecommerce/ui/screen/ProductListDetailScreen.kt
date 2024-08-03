@@ -28,7 +28,8 @@ fun ProductListDetailScreen(
     modifier: Modifier = Modifier,
     productListViewModel: ProductListViewModel = koinViewModel(),
     snackbarHostState: SnackbarHostState,
-    scope: CoroutineScope
+    scope: CoroutineScope,
+    navigateToCartScreen: () -> Unit
 ) {
 
     val productListState by productListViewModel.productListState.collectAsStateWithLifecycle()
@@ -60,7 +61,9 @@ fun ProductListDetailScreen(
                     AnimatedPane {
                         navigator.currentDestination?.content?.let { productPresentation ->
                             ProductDetail(
-                                modifier = modifier, productPresentation = productPresentation
+                                modifier = modifier,
+                                productPresentation = productPresentation,
+                                navigateToCartScreen = navigateToCartScreen
                             )
                         }
                     }

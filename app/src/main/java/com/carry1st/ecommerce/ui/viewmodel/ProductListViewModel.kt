@@ -2,7 +2,7 @@ package com.carry1st.ecommerce.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carry1st.ecommerce.data.repository.ProductRepository
+import com.carry1st.ecommerce.data.repository.product.ProductRepository
 import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_CLIENT_ERRORMESSAGE
 import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_NETWORK_ERRORMESSAGE
 import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_SERVER_ERRORMESSAGE
@@ -11,6 +11,7 @@ import com.carry1st.ecommerce.ui.mapper.toProductPresentation
 import com.carry1st.ecommerce.ui.state.ProductListState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -67,7 +68,9 @@ class ProductListViewModel(
 
     private fun getProductListFromLocalDB() {
         viewModelScope.launch {
-            productRepository.getProductListFromLocalDB().collect { productList ->
+            productRepository.getProductListFromLocalDB().catch {
+                updateErrorMessage(PRODUCTLIST_CLIENT_ERRORMESSAGE)
+            }.collect { productList ->
                 _productListState.update {
                     it.copy(
                         productList = productList.map { productDomain -> productDomain.toProductPresentation() },

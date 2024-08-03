@@ -1,4 +1,4 @@
-package com.carry1st.ecommerce.di
+package com.carry1st.ecommerce.data.network.di
 
 import com.carry1st.ecommerce.data.network.service.ProductService
 import com.carry1st.ecommerce.domain.utils.Constants.BASE_URL

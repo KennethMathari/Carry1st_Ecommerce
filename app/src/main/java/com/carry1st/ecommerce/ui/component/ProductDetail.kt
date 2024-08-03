@@ -12,11 +12,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.carry1st.ecommerce.ui.mapper.toCartPresentation
 import com.carry1st.ecommerce.ui.model.ProductPresentation
+import com.carry1st.ecommerce.ui.viewmodel.CartViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ProductDetail(
-    productPresentation: ProductPresentation, modifier: Modifier
+    productPresentation: ProductPresentation,
+    modifier: Modifier,
+    cartViewModel: CartViewModel = koinViewModel(),
+    navigateToCartScreen: () -> Unit
 ) {
     Column(
         verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
@@ -33,7 +39,10 @@ fun ProductDetail(
         Text(text = productPresentation.price.toString())
         Text(text = productPresentation.description)
 
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = {
+            cartViewModel.addCartItem(productPresentation.toCartPresentation())
+            navigateToCartScreen()
+        }) {
             Text(text = "Add to Cart")
         }
 

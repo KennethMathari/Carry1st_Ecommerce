@@ -16,10 +16,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.carry1st.ecommerce.ui.navigation.BottomNavigationItem
+import com.carry1st.ecommerce.ui.viewmodel.CartViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun BottomAppNavigation(
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    cartViewModel: CartViewModel = koinViewModel()
 ) {
 
     var selectedItemIndex by rememberSaveable {
