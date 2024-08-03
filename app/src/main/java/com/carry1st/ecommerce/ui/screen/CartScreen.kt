@@ -35,7 +35,9 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun CartScreen(
-    modifier: Modifier = Modifier, cartViewModel: CartViewModel = koinViewModel()
+    modifier: Modifier = Modifier,
+    cartViewModel: CartViewModel = koinViewModel(),
+    navigateToCartScreen: () -> Unit
 ) {
     val cartState by cartViewModel.cartState.collectAsStateWithLifecycle()
 
@@ -111,14 +113,15 @@ fun CartScreen(
                                 }
 
 
-                                Icon(
-                                    imageVector = Icons.Filled.Delete,
+                                Icon(imageVector = Icons.Filled.Delete,
                                     contentDescription = "Delete item",
                                     modifier = Modifier
                                         .size(35.dp)
-                                        .clickable { },
-                                    tint = MaterialTheme.colorScheme.secondary
-                                )
+                                        .clickable(onClick = {
+                                            cartViewModel.deleteCartItem(cartItem)
+                                            navigateToCartScreen()
+                                        }),
+                                    tint = MaterialTheme.colorScheme.secondary)
                             }
                         }
                     }

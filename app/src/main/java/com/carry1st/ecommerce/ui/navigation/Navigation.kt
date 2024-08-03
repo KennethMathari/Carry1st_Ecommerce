@@ -25,7 +25,8 @@ fun Navigation(
     ) {
 
         composable<ProductListDetail> {
-            ProductListDetailScreen(snackbarHostState = snackbarHostState,
+            ProductListDetailScreen(
+                snackbarHostState = snackbarHostState,
                 scope = scope,
                 navigateToCartScreen = {
                     navHostController.navigate(Cart)
@@ -33,7 +34,9 @@ fun Navigation(
         }
 
         composable<Cart> {
-            CartScreen()
+            CartScreen(navigateToCartScreen = {
+                navHostController.navigate(Cart)
+            })
         }
 
         composable<Settings> {
