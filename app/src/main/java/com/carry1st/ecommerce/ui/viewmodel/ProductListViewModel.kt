@@ -3,18 +3,17 @@ package com.carry1st.ecommerce.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carry1st.ecommerce.data.local.SearchManager
-import com.carry1st.ecommerce.data.repository.product.ProductRepository
+import com.carry1st.ecommerce.domain.repository.ProductRepository
 import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_CLIENT_ERRORMESSAGE
 import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_NETWORK_ERRORMESSAGE
 import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_SERVER_ERRORMESSAGE
-import com.carry1st.ecommerce.domain.utils.NetworkResult
+import com.carry1st.ecommerce.domain.utils.ApiResult
 import com.carry1st.ecommerce.ui.mapper.toProductPresentation
 import com.carry1st.ecommerce.ui.state.ProductListState
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -52,19 +51,19 @@ class ProductListViewModel(
 
                 productRepository.getProductListFromServer().collect { result ->
                     when (result) {
-                        is NetworkResult.ClientError -> {
+                        is ApiResult.ClientError -> {
                             updateErrorMessage(PRODUCTLIST_CLIENT_ERRORMESSAGE)
                         }
 
-                        is NetworkResult.NetworkError -> {
+                        is ApiResult.NetworkError -> {
                             updateErrorMessage(PRODUCTLIST_NETWORK_ERRORMESSAGE)
                         }
 
-                        is NetworkResult.ServerError -> {
+                        is ApiResult.ServerError -> {
                             updateErrorMessage(PRODUCTLIST_SERVER_ERRORMESSAGE)
                         }
 
-                        is NetworkResult.Success -> {
+                        is ApiResult.Success -> {
                             searchManager.addProductList(result.data)
                         }
                     }

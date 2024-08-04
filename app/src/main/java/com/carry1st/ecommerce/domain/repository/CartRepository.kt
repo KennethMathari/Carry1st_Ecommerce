@@ -1,11 +1,12 @@
-package com.carry1st.ecommerce.data.repository.cart
+package com.carry1st.ecommerce.domain.repository
 
 import com.carry1st.ecommerce.domain.model.CartDomain
+import com.carry1st.ecommerce.domain.utils.LocalDBResult
 import kotlinx.coroutines.flow.Flow
 
 interface CartRepository {
 
-    suspend fun getCartItems(): Flow<List<CartDomain>>
+    suspend fun getCartItems(): Flow<LocalDBResult<List<CartDomain>>>
 
     suspend fun addCartItem(cartItem: CartDomain)
 

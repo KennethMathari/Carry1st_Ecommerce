@@ -14,19 +14,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.input.ImeAction
@@ -47,17 +42,21 @@ fun ProductList(
     Column {
 
         OutlinedTextField(
-            value = productListState.searchQuery,
+            value = productListState.searchQuery ,
             onValueChange = productListViewModel::searchProductList,
             label = {
-            Text(text = "Search")
-        }, placeholder = {
-            Text(text = "Search for product..")
-        }, singleLine = true, keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Text, imeAction = ImeAction.Search
-        ), modifier = modifier
-            .padding(8.dp)
-            .fillMaxWidth()
+                Text(text = "Search")
+            },
+            placeholder = {
+                Text(text = "Search for product..")
+            },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text, imeAction = ImeAction.Search
+            ),
+            modifier = modifier
+                .padding(8.dp)
+                .fillMaxWidth()
         )
 
         LazyColumn {

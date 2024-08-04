@@ -1,8 +1,8 @@
 package com.carry1st.ecommerce.data.repository.di
 
-import com.carry1st.ecommerce.data.repository.cart.CartRepository
+import com.carry1st.ecommerce.domain.repository.CartRepository
 import com.carry1st.ecommerce.data.repository.cart.CartRepositoryImpl
-import com.carry1st.ecommerce.data.repository.product.ProductRepository
+import com.carry1st.ecommerce.domain.repository.ProductRepository
 import com.carry1st.ecommerce.data.repository.product.ProductRepositoryImpl
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

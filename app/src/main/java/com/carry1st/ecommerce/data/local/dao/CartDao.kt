@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
 import com.carry1st.ecommerce.data.local.entity.CartEntity
+import com.carry1st.ecommerce.domain.utils.LocalDBResult
 import kotlinx.coroutines.flow.Flow
 
 @Dao

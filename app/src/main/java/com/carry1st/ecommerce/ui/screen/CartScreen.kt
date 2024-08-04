@@ -41,7 +41,7 @@ fun CartScreen(
     val cartState by cartViewModel.cartState.collectAsStateWithLifecycle()
 
     Box {
-        if (cartState.cartList.isEmpty()) {
+        if (cartState.cartList?.isEmpty() == true) {
             Column(
                 modifier = modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
@@ -61,7 +61,7 @@ fun CartScreen(
                 )
 
                 LazyColumn {
-                    items(cartState.cartList) { cartItem ->
+                    items(cartState.cartList ?: emptyList()) { cartItem ->
                         Card(
                             colors = CardDefaults.cardColors(
                                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -126,7 +126,7 @@ fun CartScreen(
                 }
 
                 Text(
-                    text = "Total: USD ${cartState.cartList.sumOf { it.price }}",
+                    text = "Total: USD ${cartState.cartList?.sumOf { it.price }}",
                     modifier = modifier
                         .align(alignment = Alignment.End)
                         .padding(8.dp),

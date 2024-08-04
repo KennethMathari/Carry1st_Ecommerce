@@ -1,16 +1,15 @@
 package com.carry1st.ecommerce.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carry1st.ecommerce.data.repository.cart.CartRepository
+import com.carry1st.ecommerce.domain.repository.CartRepository
+import com.carry1st.ecommerce.domain.utils.LocalDBResult
 import com.carry1st.ecommerce.ui.mapper.toCartDomain
 import com.carry1st.ecommerce.ui.mapper.toCartPresentation
 import com.carry1st.ecommerce.ui.model.CartPresentation
 import com.carry1st.ecommerce.ui.state.CartState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class CartViewModel(
@@ -32,15 +31,22 @@ class CartViewModel(
 
     private fun getCartItems() {
         viewModelScope.launch {
-            cartRepository.getCartItems().catch {
-                _cartState.value = CartState(
-                    cartList = emptyList(), errorMessage = "Unable to Fetch Cart Items!"
-                )
-            }.collect { cartDomainList ->
-                Log.e("CartList:", cartDomainList.toString())
-                _cartState.value = CartState(
-                    cartList = cartDomainList.map { it.toCartPresentation() }, errorMessage = null
-                )
+            cartRepository.getCartItems().collect { result ->
+
+                when(result){
+                    is LocalDBResult.Error -> {
+                        _cartState.value = CartState(
+                            cartList = null,
+                            errorMessage = "Unable to Fetch Cart Items!"
+                        )
+                    }
+                    is LocalDBResult.Success -> {
+                        _cartState.value = CartState(
+                            cartList = result.data.map { it.toCartPresentation() },
+                            errorMessage = null
+                        )
+                    }
+                }
 
             }
         }

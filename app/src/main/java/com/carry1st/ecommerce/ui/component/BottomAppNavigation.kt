@@ -46,7 +46,7 @@ fun BottomAppNavigation(
             selectedIcon = R.drawable.filled_cart,
             unselectedIcon = R.drawable.outlined_cart,
             hasUpdate = false,
-            badgeCount = cartState.cartList.size,
+            badgeCount = cartState.cartList?.size,
             route = Cart
         ), BottomNavigationItem(
             title = "Settings",
