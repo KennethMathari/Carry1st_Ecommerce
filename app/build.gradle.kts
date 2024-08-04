@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("plugin.serialization") version "1.9.0"
+    kotlin("kapt")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
 }
@@ -88,7 +89,11 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
     ksp(libs.androidx.room.compiler)
-    implementation("androidx.room:room-ktx:2.6.1")
+    implementation(libs.androidx.room.ktx)
+    //AppSearch
+    implementation(libs.androidx.appsearch)
+    kapt(libs.androidx.appsearch.compiler)
+    implementation(libs.androidx.appsearch.local.storage)
 
 
     testImplementation(libs.junit)

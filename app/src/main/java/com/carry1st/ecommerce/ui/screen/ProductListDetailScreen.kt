@@ -54,7 +54,8 @@ fun ProductListDetailScreen(
                                 navigator.navigateTo(
                                     ListDetailPaneScaffoldRole.Detail, productPresentation
                                 )
-                            })
+                            },
+                            productListViewModel = productListViewModel)
                     }
                 },
                 detailPane = {

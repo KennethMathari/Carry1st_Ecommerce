@@ -52,7 +52,7 @@ fun BottomAppNavigation(
             title = "Settings",
             selectedIcon = R.drawable.filled_settings,
             unselectedIcon = R.drawable.outlined_settings,
-            hasUpdate = false,
+            hasUpdate = true,
             badgeCount = null,
             route = Settings
         )

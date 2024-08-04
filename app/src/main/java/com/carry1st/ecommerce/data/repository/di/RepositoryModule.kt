@@ -22,7 +22,7 @@ val repositoryModule = module {
 
     single<ProductRepository> {
         ProductRepositoryImpl(
-            productService = get(), ioDispatcher = get(), productDao = get()
+            productService = get(), ioDispatcher = get()
         )
     }
 

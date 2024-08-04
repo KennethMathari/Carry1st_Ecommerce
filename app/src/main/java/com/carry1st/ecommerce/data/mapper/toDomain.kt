@@ -1,7 +1,7 @@
 package com.carry1st.ecommerce.data.mapper
 
+import com.carry1st.ecommerce.data.local.document.ProductDocument
 import com.carry1st.ecommerce.data.local.entity.CartEntity
-import com.carry1st.ecommerce.data.local.entity.ProductEntity
 import com.carry1st.ecommerce.data.network.model.ProductDTO
 import com.carry1st.ecommerce.domain.model.CartDomain
 import com.carry1st.ecommerce.domain.model.ProductDomain
@@ -20,8 +20,8 @@ fun ProductDTO.toProductDomain(): ProductDomain {
     )
 }
 
-fun ProductEntity.toProductDomain(): ProductDomain{
-    return ProductDomain(
+fun CartEntity.toCartDomain(): CartDomain {
+    return CartDomain(
         currencyCode = this.currencyCode,
         currencySymbol = this.currencySymbol,
         description = this.description,
@@ -34,12 +34,12 @@ fun ProductEntity.toProductDomain(): ProductDomain{
     )
 }
 
-fun CartEntity.toCartDomain(): CartDomain{
-    return CartDomain(
+fun ProductDocument.toProductDomain(): ProductDomain {
+    return ProductDomain(
         currencyCode = this.currencyCode,
         currencySymbol = this.currencySymbol,
         description = this.description,
-        id = this.id,
+        id = this.id.toInt(),
         imageLocation = this.imageLocation,
         name = this.name,
         price = this.price,

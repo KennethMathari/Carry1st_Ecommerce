@@ -2,6 +2,7 @@ package com.carry1st.ecommerce.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.carry1st.ecommerce.data.local.SearchManager
 import com.carry1st.ecommerce.data.repository.product.ProductRepository
 import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_CLIENT_ERRORMESSAGE
 import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_NETWORK_ERRORMESSAGE
@@ -9,6 +10,8 @@ import com.carry1st.ecommerce.domain.utils.Constants.PRODUCTLIST_SERVER_ERRORMES
 import com.carry1st.ecommerce.domain.utils.NetworkResult
 import com.carry1st.ecommerce.ui.mapper.toProductPresentation
 import com.carry1st.ecommerce.ui.state.ProductListState
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -17,15 +20,27 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class ProductListViewModel(
-    private val productRepository: ProductRepository
+    private val productRepository: ProductRepository, private val searchManager: SearchManager
 ) : ViewModel() {
 
     private val _productListState = MutableStateFlow(ProductListState())
     val productListState: StateFlow<ProductListState> get() = _productListState
 
+    private var searchJob: Job? = null
+
     init {
         getProductListFromServer()
-        getProductListFromLocalDB()
+        fetchProductListFromLocalStorage()
+    }
+
+    private fun fetchProductListFromLocalStorage() {
+        viewModelScope.launch {
+            val productList =
+                searchManager.fetchProductListFromLocalStorage().map { it.toProductPresentation() }
+            _productListState.value = ProductListState(
+                productList = productList, isLoading = false, errorMessage = null
+            )
+        }
     }
 
     private fun getProductListFromServer() {
@@ -50,7 +65,7 @@ class ProductListViewModel(
                         }
 
                         is NetworkResult.Success -> {
-                            productRepository.saveProductsToLocalDB(result.data)
+                            searchManager.addProductList(result.data)
                         }
                     }
                 }
@@ -66,20 +81,27 @@ class ProductListViewModel(
         }
     }
 
-    private fun getProductListFromLocalDB() {
-        viewModelScope.launch {
-            productRepository.getProductListFromLocalDB().catch {
-                updateErrorMessage(PRODUCTLIST_CLIENT_ERRORMESSAGE)
-            }.collect { productList ->
-                _productListState.update {
-                    it.copy(
-                        productList = productList.map { productDomain -> productDomain.toProductPresentation() },
-                        isLoading = false,
-                        errorMessage = null
-                    )
-                }
+    fun searchProductList(query: String) {
+        _productListState.value = ProductListState(
+            searchQuery = query
+        )
+        searchJob?.cancel()
+        searchJob = viewModelScope.launch {
+            delay(500L)
+            val productList = searchManager.searchRecipients(query)
 
-            }
+            _productListState.value = ProductListState(
+                productList = productList.map { it.toProductPresentation() },
+                isLoading = false,
+                errorMessage = null,
+                searchQuery = query
+            )
+
         }
+    }
+
+    override fun onCleared() {
+        searchManager.closeSession()
+        super.onCleared()
     }
 }

@@ -35,27 +35,27 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.carry1st.ecommerce.ui.model.ProductPresentation
 import com.carry1st.ecommerce.ui.state.ProductListState
+import com.carry1st.ecommerce.ui.viewmodel.ProductListViewModel
 
 @Composable
 fun ProductList(
     modifier: Modifier,
     productListState: ProductListState,
-    onProductClicked: (ProductPresentation) -> Unit
+    onProductClicked: (ProductPresentation) -> Unit,
+    productListViewModel: ProductListViewModel
 ) {
-    var productName by remember { mutableStateOf("") }
     Column {
 
-        OutlinedTextField(value = productName, onValueChange = { productName = it }, label = {
+        OutlinedTextField(
+            value = productListState.searchQuery,
+            onValueChange = productListViewModel::searchProductList,
+            label = {
             Text(text = "Search")
         }, placeholder = {
             Text(text = "Search for product..")
         }, singleLine = true, keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text, imeAction = ImeAction.Search
-        ), trailingIcon = {
-            Icon(imageVector = Icons.Filled.Search,
-                contentDescription = "Search",
-                modifier = modifier.clickable(onClick = {}))
-        }, modifier = modifier
+        ), modifier = modifier
             .padding(8.dp)
             .fillMaxWidth()
         )
