@@ -44,6 +44,16 @@ Other dependencies are listed in the build.gradle files.
 ## Architecture
 The project follows the MVI (Model-View-Intent) architecture and is modularized into features consisting of the Data, Domain & UI layers.
 
+### App Module
+The app module, depends on all, or relevant `feature` modules. Additionally, the `app` module can depend directly on the `common` modules.
+### Feature Modules
+The feature modules, represent a singular feature of the app, such as products or cart. It allows us to decouple the features from the app itself and test these in isolation.
+### Core Modules
+The core modules include code that is common amongst features, and other modules.
+Features depend on core modules and core modules can depend on one another. We should be careful to not create cyclical dependencies amongst the core modules, however.
+
+In the case of cyclical dependencies we most likely can refactor the code which is needed into a separate core module such as :core-common
+
 ## App Screenshots
 #### Potrait
 > ![](https://github.com/user-attachments/assets/f4108f90-cec9-4895-91d7-e79542378149)
