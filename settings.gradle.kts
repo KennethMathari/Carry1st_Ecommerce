@@ -21,4 +21,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "Carry1st"
 include(":app")
- 
+include(":common")
+include(":feature:product:ui")
+include(":feature:product:domain")
+include(":feature:product:data")
+include(":feature:cart:ui")
+include(":feature:cart:data")
+include(":feature:cart:domain")

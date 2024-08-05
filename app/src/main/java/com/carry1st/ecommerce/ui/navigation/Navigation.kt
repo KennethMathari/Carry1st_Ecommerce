@@ -6,12 +6,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.carry1st.cart.ui.screen.CartScreen
 import com.carry1st.ecommerce.ui.navigation.destination.Cart
 import com.carry1st.ecommerce.ui.navigation.destination.ProductListDetail
 import com.carry1st.ecommerce.ui.navigation.destination.Settings
-import com.carry1st.ecommerce.ui.screen.CartScreen
-import com.carry1st.ecommerce.ui.screen.ProductListDetailScreen
 import com.carry1st.ecommerce.ui.screen.SettingsScreen
+import com.carry1st.product.ui.screen.ProductListDetailScreen
 
 @Composable
 fun Navigation(

@@ -14,12 +14,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.carry1st.cart.ui.viewmodel.CartViewModel
 import com.carry1st.ecommerce.R
 import com.carry1st.ecommerce.ui.navigation.BottomNavigationItem
 import com.carry1st.ecommerce.ui.navigation.destination.Cart
 import com.carry1st.ecommerce.ui.navigation.destination.ProductListDetail
 import com.carry1st.ecommerce.ui.navigation.destination.Settings
-import com.carry1st.ecommerce.ui.viewmodel.CartViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

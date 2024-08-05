@@ -18,6 +18,9 @@ kotlinx-serialization-json = "1.6.3"
 navigation-compose = "2.8.0-beta06"
 roomRuntime = "2.6.1"
 appSearch = "1.1.0-alpha03"
+appcompat = "1.6.1"
+material = "1.10.0"
+lifecycleRuntimeComposeAndroid = "2.8.4"
 
 [libraries]
 androidx-adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
@@ -54,6 +57,9 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 androidx-appsearch = { module = "androidx.appsearch:appsearch", version.ref = "appSearch" }
 androidx-appsearch-compiler = { module = "androidx.appsearch:appsearch-compiler", version.ref = "appSearch" }
 androidx-appsearch-local-storage = { module = "androidx.appsearch:appsearch-local-storage", version.ref = "appSearch" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
 
 
 
@@ -61,4 +67,5 @@ androidx-appsearch-local-storage = { module = "androidx.appsearch:appsearch-loca
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 
