@@ -43,5 +43,7 @@ Other dependencies are listed in the build.gradle files.
 
 ## App Screenshots
 #### Potrait
->![](https://github.com/user-attachments/assets/f4108f90-cec9-4895-91d7-e79542378149)
+> ![](https://github.com/user-attachments/assets/f4108f90-cec9-4895-91d7-e79542378149)
 #### Landscape
+> ![](https://github.com/user-attachments/assets/e2600336-4aba-4da8-a87d-d96e41338c10)
+
