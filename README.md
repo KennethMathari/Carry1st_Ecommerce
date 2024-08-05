@@ -38,3 +38,7 @@ After opening the project, build and run to install the app in the emulator or a
 - <b>Coil </b>: For image loading and caching.
 - <b>JUnit </b>: For unit testing.
 - <b>Mockito </b>: For mocking dependencies in tests.
+
+Other dependencies are listed in the build.gradle files.
+
+![img.png](img.png)
