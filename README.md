@@ -41,6 +41,9 @@ After opening the project, build and run to install the app in the emulator or a
 
 Other dependencies are listed in the build.gradle files.
 
+## Architecture
+The project follows the MVI (Model-View-Intent) architecture and is modularized into features consisting of the Data, Domain & UI layers.
+
 ## App Screenshots
 #### Potrait
 > ![](https://github.com/user-attachments/assets/f4108f90-cec9-4895-91d7-e79542378149)
