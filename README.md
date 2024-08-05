@@ -24,4 +24,17 @@ After opening the project, build and run to install the app in the emulator or a
  - Adds selected items to the cart and displays a badge with the item count.
  - Allows removing items from the cart.
 
+## API
+> Products API: <https://my-json-server.typicode.com/carry1stdeveloper/mock-product-api/productBundles>
 
+## Libraries & Plugins
+- <b>Jetpack Compose </b>: For building the UI in a declarative manner.
+- <b>Koin </b>: For dependency injection to manage dependencies efficiently.
+- <b>Retrofit </b>: For network operations to fetch data from the API.
+- <b>Room </b>: For local(offline) storage.
+- <b>List-Detail Layout </b>: For a dual-pane layout where one pane presents a list of items and another pane displays the details of items selected from the list.
+- <b>App Search </b>: a high-performance on-device search solution for managing locally stored, structured data.
+- <b>Instantiator </b>: For generating test data from data classes.
+- <b>Coil </b>: For image loading and caching.
+- <b>JUnit </b>: For unit testing.
+- <b>Mockito </b>: For mocking dependencies in tests.
