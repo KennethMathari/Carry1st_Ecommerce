@@ -41,4 +41,5 @@ After opening the project, build and run to install the app in the emulator or a
 
 Other dependencies are listed in the build.gradle files.
 
-![img.png](img.png)
+>![](https://github.com/user-attachments/assets/f4108f90-cec9-4895-91d7-e79542378149)
+
