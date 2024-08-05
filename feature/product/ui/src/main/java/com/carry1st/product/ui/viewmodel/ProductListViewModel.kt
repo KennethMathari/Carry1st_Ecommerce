@@ -88,7 +88,7 @@ class ProductListViewModel(
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(500L)
-            val productList = searchManager.searchRecipients(query)
+            val productList = searchManager.searchProductList(query)
 
             _productListState.value = ProductListState(
                 productList = productList.map { it.toProductPresentation() },

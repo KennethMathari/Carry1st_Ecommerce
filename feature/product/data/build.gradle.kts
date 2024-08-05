@@ -60,7 +60,12 @@ dependencies {
     kapt(libs.androidx.appsearch.compiler)
     implementation(libs.androidx.appsearch.local.storage)
 
-
+    //mockK
+    testImplementation(libs.mockk)
+    //Instantiator
+    testImplementation(libs.instantiator)
+    //Kotlin Coroutine Test
+    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

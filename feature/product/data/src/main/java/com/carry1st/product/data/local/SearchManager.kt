@@ -21,7 +21,7 @@ class SearchManager(
     scope: CoroutineScope
 ) {
 
-    private var session: AppSearchSession? = null
+    var session: AppSearchSession? = null
 
     init {
         scope.launch {
@@ -29,7 +29,7 @@ class SearchManager(
         }
     }
 
-    private suspend fun init() {
+    suspend fun init() {
         withContext(ioDispatcher) {
             val sessionFuture = LocalStorage.createSearchSessionAsync(
                 LocalStorage.SearchContext.Builder(
@@ -56,7 +56,7 @@ class SearchManager(
         }
     }
 
-    suspend fun searchRecipients(query: String): List<ProductDomain> {
+    suspend fun searchProductList(query: String): List<ProductDomain> {
         return withContext(ioDispatcher) {
             val searchSpec =
                 SearchSpec.Builder().setSnippetCount(10).addFilterNamespaces("my_products")
