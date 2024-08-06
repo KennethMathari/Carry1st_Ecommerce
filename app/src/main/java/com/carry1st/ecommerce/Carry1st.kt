@@ -1,9 +1,9 @@
 package com.carry1st.ecommerce
 
 import android.app.Application
-import com.carry1st.cart.data.local.di.localCartDBModule
-import com.carry1st.cart.data.repository.di.cartRepositoryModule
 import com.carry1st.cart.ui.viewmodel.di.cartViewModelModule
+import com.carry1st.core.data.local.di.localCartDBModule
+import com.carry1st.core.data.repository.di.cartRepositoryModule
 import com.carry1st.product.data.local.di.localProductDBModule
 import com.carry1st.product.data.network.di.productNetworkModule
 import com.carry1st.product.data.repository.di.productRepositoryModule

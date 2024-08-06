@@ -61,7 +61,6 @@ dependencies {
     implementation(project(":feature:product:data"))
     implementation(project(":feature:product:ui"))
     implementation(project(":feature:cart:ui"))
-    implementation(project(":feature:cart:data"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -95,6 +94,7 @@ dependencies {
     implementation(libs.coil.compose)
     //Room
     implementation(libs.androidx.room.runtime)
+    implementation(project(":core:data"))
     annotationProcessor(libs.androidx.room.compiler)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)

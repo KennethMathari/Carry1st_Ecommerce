@@ -2,11 +2,11 @@ package com.carry1st.cart.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carry1st.cart.data.repository.CartRepository
 import com.carry1st.cart.ui.mapper.toCartDomain
 import com.carry1st.cart.ui.mapper.toCartPresentation
 import com.carry1st.cart.ui.model.CartPresentation
 import com.carry1st.cart.ui.state.CartState
+import com.carry1st.core.data.repository.CartRepository
 import com.carry1st.domain.utils.LocalDBResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
