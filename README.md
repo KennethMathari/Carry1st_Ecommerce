@@ -48,7 +48,7 @@ Below is an abstract diagram of the architecture
 >![image](https://github.com/user-attachments/assets/f64b9ee9-5343-4385-9cd1-dc5e3d847389)
 
 ### App Module
-The app module, depends on all, or relevant `feature` modules. Additionally, the `app` module can depend directly on the `common` modules.
+The app module, depends on all, or relevant `feature` modules. Additionally, the `app` module can depend directly on the `core` modules.
 ### Feature Modules
 The feature modules, represent a singular feature of the app, such as products or cart. It allows us to decouple the features from the app itself and test these in isolation.
 ### Core Modules
