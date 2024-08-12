@@ -37,10 +37,11 @@ fun ProductList(
     onProductClicked: (ProductPresentation) -> Unit,
     productListViewModel: ProductListViewModel
 ) {
+
     Column {
 
         OutlinedTextField(
-            value = productListState.searchQuery ,
+            value = productListState.searchQuery,
             onValueChange = productListViewModel::searchProductList,
             label = {
                 Text(text = "Search")

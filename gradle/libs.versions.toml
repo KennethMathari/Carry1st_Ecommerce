@@ -24,6 +24,7 @@ material = "1.10.0"
 lifecycleRuntimeComposeAndroid = "2.8.4"
 mockk = "1.13.5"
 kotlinx-coroutines-test = "1.8.1"
+turbine = "1.1.0"
 
 [libraries]
 androidx-adaptive = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
@@ -66,6 +67,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 
 

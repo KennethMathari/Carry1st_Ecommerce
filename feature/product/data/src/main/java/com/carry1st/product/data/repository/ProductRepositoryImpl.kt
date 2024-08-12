@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flowOn
 
 class ProductRepositoryImpl(
     private val productService: ProductService,
-    private val ioDispatcher: CoroutineDispatcher,
+    private val ioDispatcher: CoroutineDispatcher
 ) : ProductRepository {
 
     override suspend fun getProductListFromServer(): Flow<ApiResult<List<ProductDomain>>> {

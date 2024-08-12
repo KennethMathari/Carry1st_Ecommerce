@@ -65,6 +65,14 @@ dependencies {
 
 
     testImplementation(libs.junit)
+    //Kotlin Coroutine Test
+    testImplementation(libs.kotlinx.coroutines.test)
+    //Turbine
+    testImplementation(libs.turbine)
+    //mockK
+    testImplementation(libs.mockk)
+    //Instantiator
+    testImplementation(libs.instantiator)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

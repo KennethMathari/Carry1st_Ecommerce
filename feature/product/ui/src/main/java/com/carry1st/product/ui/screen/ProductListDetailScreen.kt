@@ -48,14 +48,16 @@ fun ProductListDetailScreen(
                 value = navigator.scaffoldValue,
                 listPane = {
                     AnimatedPane {
-                        ProductList(modifier = modifier,
+                        ProductList(
+                            modifier = modifier,
                             productListState = productListState,
                             onProductClicked = { productPresentation ->
                                 navigator.navigateTo(
                                     ListDetailPaneScaffoldRole.Detail, productPresentation
                                 )
                             },
-                            productListViewModel = productListViewModel)
+                            productListViewModel = productListViewModel
+                        )
                     }
                 },
                 detailPane = {
