@@ -22,10 +22,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.carry1st.product.ui.R
 import com.carry1st.product.ui.model.ProductPresentation
 import com.carry1st.product.ui.state.ProductListState
 import com.carry1st.product.ui.viewmodel.ProductListViewModel
@@ -44,10 +46,10 @@ fun ProductList(
             value = productListState.searchQuery,
             onValueChange = productListViewModel::searchProductList,
             label = {
-                Text(text = "Search")
+                Text(text = stringResource(R.string.search))
             },
             placeholder = {
-                Text(text = "Search for product..")
+                Text(text = stringResource(R.string.search_for_product))
             },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
@@ -74,7 +76,7 @@ fun ProductList(
                     Row {
                         AsyncImage(
                             model = product.imageLocation,
-                            contentDescription = "${product.name} image",
+                            contentDescription = stringResource(R.string.image, product.name),
                             modifier = modifier
                                 .size(100.dp)
                                 .padding(start = 8.dp),

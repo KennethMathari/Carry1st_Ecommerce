@@ -21,7 +21,5 @@ fun BuyNow(
         Text(text = "Total Price:${product.currencyCode} ${product.price}")
         Text(text = "Choose Payment Method")
 
-
-
     }
 }
