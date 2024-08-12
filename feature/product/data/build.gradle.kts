@@ -45,9 +45,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     //Retrofit
     implementation(libs.retrofit)
-    //Moshi
-    implementation(libs.moshi.kotlin)
-    implementation(libs.converter.moshi)
+    //Kotlin Serialization Converter
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
     //OkHttp
     implementation(libs.okhttp)
     //Koin

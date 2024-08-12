@@ -13,6 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.carry1st.product.ui.component.BuyNow
 import com.carry1st.product.ui.component.LoadingScreen
 import com.carry1st.product.ui.component.ProductDetail
 import com.carry1st.product.ui.component.ProductList
@@ -66,8 +67,21 @@ fun ProductListDetailScreen(
                             ProductDetail(
                                 modifier = modifier,
                                 productPresentation = productPresentation,
-                                navigateToCartScreen = navigateToCartScreen
+                                navigateToCartScreen = navigateToCartScreen,
+                                navigateToCheckoutScreen = { product->
+                                    navigator.navigateTo(
+                                        ListDetailPaneScaffoldRole.Extra, product
+                                    )
+                                }
                             )
+                        }
+                    }
+                },
+                extraPane = {
+                    AnimatedPane {
+                        navigator.currentDestination?.content?.let { product->
+                            BuyNow(product = product, modifier = modifier)
+
                         }
                     }
                 })

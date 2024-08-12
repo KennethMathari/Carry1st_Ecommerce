@@ -2,12 +2,12 @@ package com.carry1st.product.data.network.di
 
 import com.carry1st.product.data.network.service.ProductService
 import com.carry1st.product.data.utils.Constants.BASE_URL
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import java.util.concurrent.TimeUnit
 
@@ -18,13 +18,12 @@ val productNetworkModule = module {
             .connectTimeout(60, TimeUnit.SECONDS).retryOnConnectionFailure(true).build()
     }
 
-    single<Moshi> {
-        Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-    }
 
     single<Retrofit> {
+        val contentType = "application/json".toMediaType()
+
         Retrofit.Builder().baseUrl(BASE_URL).client(get())
-            .addConverterFactory(MoshiConverterFactory.create(get())).build()
+            .addConverterFactory(Json.asConverterFactory(contentType)).build()
     }
 
     single<ProductService> {

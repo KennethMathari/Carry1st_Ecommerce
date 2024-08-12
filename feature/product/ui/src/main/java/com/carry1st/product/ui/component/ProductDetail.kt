@@ -22,7 +22,8 @@ fun ProductDetail(
     productPresentation: ProductPresentation,
     modifier: Modifier,
     cartViewModel: CartViewModel = koinViewModel(),
-    navigateToCartScreen: () -> Unit
+    navigateToCartScreen: () -> Unit,
+    navigateToCheckoutScreen:(ProductPresentation)-> Unit
 ) {
     Column(
         verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
@@ -36,7 +37,7 @@ fun ProductDetail(
             contentScale = ContentScale.Fit
         )
         Text(text = productPresentation.name)
-        Text(text = productPresentation.price.toString())
+        Text(text = "${productPresentation.currencyCode} ${productPresentation.price}")
         Text(text = productPresentation.description)
 
         Button(onClick = {
@@ -46,7 +47,9 @@ fun ProductDetail(
             Text(text = "Add to Cart")
         }
 
-        Button(onClick = {  }) {
+        Button(onClick = {
+            navigateToCheckoutScreen(productPresentation)
+        }) {
             Text(text = "Buy Now")
         }
     }

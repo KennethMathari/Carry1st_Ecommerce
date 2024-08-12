@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carry1st.product.data.local.SearchManager
 import com.carry1st.product.data.repository.ProductRepository
-import com.carry1st.product.domain.model.ProductDomain
 import com.carry1st.product.domain.utils.ApiResult
 import com.carry1st.product.ui.mapper.toProductPresentation
 import com.carry1st.product.ui.state.ProductListState
@@ -41,6 +40,7 @@ class ProductListViewModel(
             _productListState.value = ProductListState(
                 productList = productList, isLoading = false, errorMessage = null
             )
+
         }
     }
 
@@ -66,17 +66,11 @@ class ProductListViewModel(
                         }
 
                         is ApiResult.Success -> {
-                            somefunction(result.data)
+                            searchManager.addProductList(result.data)
                         }
                     }
                 }
             }
-        }
-    }
-
-    private fun somefunction(data: List<ProductDomain>) {
-        viewModelScope.launch {
-            searchManager.addProductList(data)
         }
     }
 
