@@ -39,7 +39,6 @@ android {
 
 dependencies {
 
-    implementation(project(":feature:cart:domain"))
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -57,8 +56,8 @@ dependencies {
     //Coil
     implementation(libs.coil.compose)
     implementation(libs.androidx.lifecycle.runtime.compose.android)
-    implementation(project(":core:data"))
-    implementation(project(":core:data"))
+    implementation(project(":domain:cart"))
+    implementation(project(":data:cart"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

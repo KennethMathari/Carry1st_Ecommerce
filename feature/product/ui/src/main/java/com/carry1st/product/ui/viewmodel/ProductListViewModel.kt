@@ -2,14 +2,14 @@ package com.carry1st.product.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carry1st.product.data.local.SearchManager
-import com.carry1st.product.data.repository.ProductRepository
-import com.carry1st.product.domain.utils.ApiResult
+import com.carry1st.data.product.local.SearchManager
+import com.carry1st.data.product.repository.ProductRepository
 import com.carry1st.product.ui.mapper.toProductPresentation
 import com.carry1st.product.ui.state.ProductListState
 import com.carry1st.product.ui.utils.Constants.PRODUCTLIST_CLIENT_ERRORMESSAGE
 import com.carry1st.product.ui.utils.Constants.PRODUCTLIST_NETWORK_ERRORMESSAGE
 import com.carry1st.product.ui.utils.Constants.PRODUCTLIST_SERVER_ERRORMESSAGE
+import com.carry1st.product.utils.ApiResult
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow

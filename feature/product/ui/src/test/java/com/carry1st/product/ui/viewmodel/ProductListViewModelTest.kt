@@ -1,10 +1,10 @@
 package com.carry1st.product.ui.viewmodel
 
 import app.cash.turbine.test
-import com.carry1st.product.data.local.SearchManager
-import com.carry1st.product.data.repository.ProductRepository
-import com.carry1st.product.domain.utils.ApiResult
+import com.carry1st.data.product.local.SearchManager
+import com.carry1st.data.product.repository.ProductRepository
 import com.carry1st.product.ui.TestData.productDomain
+import com.carry1st.product.utils.ApiResult
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertFalse

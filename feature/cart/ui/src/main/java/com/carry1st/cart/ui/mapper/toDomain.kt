@@ -1,7 +1,7 @@
 package com.carry1st.cart.ui.mapper
 
 import com.carry1st.cart.ui.model.CartPresentation
-import com.carry1st.domain.model.CartDomain
+import com.carry1st.domain.cart.model.CartDomain
 
 fun CartPresentation.toCartDomain(): CartDomain {
     return CartDomain(

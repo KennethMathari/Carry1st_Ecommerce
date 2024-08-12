@@ -58,9 +58,12 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:product:data"))
     implementation(project(":feature:product:ui"))
     implementation(project(":feature:cart:ui"))
+    implementation(project(":core:database"))
+    implementation(project(":core:network"))
+    implementation(project(":data:cart"))
+    implementation(project(":data:product"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -77,31 +80,12 @@ dependencies {
     implementation(libs.koin.androidx.compose)
     //Retrofit
     implementation(libs.retrofit)
-    //Moshi
-    implementation(libs.moshi.kotlin)
-    implementation(libs.converter.moshi)
     //OkHttp
     implementation(libs.okhttp)
     //Kotlinx Serialization Json
     implementation(libs.kotlinx.serialization.json)
     //Compose Navigation
     implementation(libs.androidx.navigation.compose)
-    //List-Detail Layout
-    implementation(libs.androidx.adaptive)
-    implementation(libs.androidx.adaptive.layout)
-    implementation(libs.androidx.adaptive.navigation)
-    //Coil
-    implementation(libs.coil.compose)
-    //Room
-    implementation(libs.androidx.room.runtime)
-    implementation(project(":core:data"))
-    annotationProcessor(libs.androidx.room.compiler)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
-    //AppSearch
-    implementation(libs.androidx.appsearch)
-    kapt(libs.androidx.appsearch.compiler)
-    implementation(libs.androidx.appsearch.local.storage)
 
 
     testImplementation(libs.junit)

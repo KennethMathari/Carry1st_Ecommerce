@@ -6,8 +6,8 @@ import com.carry1st.cart.ui.mapper.toCartDomain
 import com.carry1st.cart.ui.mapper.toCartPresentation
 import com.carry1st.cart.ui.model.CartPresentation
 import com.carry1st.cart.ui.state.CartState
-import com.carry1st.core.data.repository.CartRepository
-import com.carry1st.domain.utils.LocalDBResult
+import com.carry1st.data.cart.repository.CartRepository
+import com.carry1st.domain.cart.utils.DatabaseResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -34,14 +34,14 @@ class CartViewModel(
         viewModelScope.launch {
             cartRepository.getCartItems().collect { result ->
 
-                when(result){
-                    is LocalDBResult.Error -> {
+                when (result) {
+                    is DatabaseResult.Error -> {
                         _cartState.value = CartState(
-                            cartList = null,
-                            errorMessage = "Unable to Fetch Cart Items!"
+                            cartList = null, errorMessage = "Unable to Fetch Cart Items!"
                         )
                     }
-                    is LocalDBResult.Success -> {
+
+                    is DatabaseResult.Success -> {
                         _cartState.value = CartState(
                             cartList = result.data.map { it.toCartPresentation() },
                             errorMessage = null
