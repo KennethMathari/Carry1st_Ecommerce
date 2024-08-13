@@ -43,6 +43,10 @@ android {
 
 dependencies {
 
+    implementation(project(":feature:cart:ui"))
+    implementation(project(":domain:product"))
+    implementation(project(":data:product"))
+    
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -59,9 +63,7 @@ dependencies {
     implementation(libs.androidx.adaptive.navigation)
     //Compose-Koin
     implementation(libs.koin.androidx.compose)
-    implementation(project(":feature:cart:ui"))
-    implementation(project(":domain:product"))
-    implementation(project(":data:product"))
+
 
 
     testImplementation(libs.junit)

@@ -51,11 +51,15 @@ Below is an abstract diagram of the architecture
 
 
 ### App Module
-The app module, depends on all, or relevant `feature` modules. Additionally, the `app` module can depend directly on the `core` modules.
+The app module serves as an entry point to the application. It depends on all, or relevant `feature` modules and provides root navigation. Additionally, the `app` module can depend directly on the `core` & `data`  modules.
 ### Feature Modules
-The feature modules, represent a singular feature of the app, such as products or cart. It allows us to decouple the features from the app itself and test these in isolation.
+The feature modules, represent a singular feature of the app i.e. `product` or `cart`. It allows us to decouple the features from the app itself and test these in isolation.
+### Domain Modules
+The domain modules contains the core business logic of the application. It is independent of frameworks and libraries specific to Android, allowing it to be reused or tested easily without the need for an Android environment.
+### Data Modules
+The data modules contains a repository, data sources and DTO model classes.
 ### Core Modules
-The core modules include code that is common amongst features, and other modules.
+Core modules, also known as common modules, contain code that other modules frequently use. They reduce redundancy and don't represent any specific layer in an app's architecture e.g Network, Database module.
 Features depend on core modules and core modules can depend on one another. We should be careful to not create cyclical dependencies amongst the core modules, however.
 
 In the case of cyclical dependencies we most likely can refactor the code which is needed into a separate core module such as :core-common
