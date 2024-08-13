@@ -35,7 +35,7 @@ After opening the project, build and run to install the app in the emulator or a
 - <b>Room </b>: For local(offline) storage.
 - <b>List-Detail Layout </b>: For a dual-pane layout where one pane presents a list of items and another pane displays the details of items selected from the list.
 - <b>App Search </b>: a high-performance on-device search solution for managing locally stored, structured data.
-- <b>Instantiator </b>: For generating test data from data classes.
+- <b>Instantiator </b>: a little Kotlin library that uses reflection to fill data class with random test data.
 - <b>Coil </b>: For image loading and caching.
 - <b>JUnit </b>: For unit testing.
 - <b>MockK </b>: For mocking dependencies in tests.
@@ -55,7 +55,7 @@ The app module serves as an entry point to the application. It depends on all, o
 ### Feature Modules
 The feature modules, represent a singular feature of the app i.e. `product` or `cart`. It allows us to decouple the features from the app itself and test these in isolation.
 ### Domain Modules
-The domain modules contains the core business logic of the application. It is independent of frameworks and libraries specific to Android, allowing it to be reused or tested easily without the need for an Android environment.
+The domain modules is usually optional but it can contain use cases, domain models & interface repositories. It is independent of frameworks and libraries specific to Android, allowing it to be reused or tested easily without the need for an Android environment.
 ### Data Modules
 The data modules contains a repository, data sources and DTO model classes.
 ### Core Modules
